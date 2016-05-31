@@ -11,10 +11,10 @@
  * The adaptation is copyright (C) Krzysztof Rzadca, 2016.
  */
 
-#include <stdint.h>
-#include <stdlib.h>
+#include <cstdint>
+#include <cstdlib>
 
-#include "densematgen.h"
+#include "densematgen.hpp"
 
 uint32_t naive_xorshift(uint32_t x, uint32_t y, uint32_t w) 
 {
@@ -26,22 +26,24 @@ uint32_t naive_xorshift(uint32_t x, uint32_t y, uint32_t w)
   return w;
 }
 
-double generate_double(int seed, int row, int col)
+double generate_double(int seed, int row, int col) 
 {
-  if (seed == 0)
-    return 0;
-  if (seed == 1)
-    return 1;
-  if (seed == 2)
-    return (row==col)? 1:0;
-  if (seed == 3)
-    return row*10+col;
-  if (seed > 10)
-  {
-    uint32_t resolution = 1000;
-    uint32_t rand_32 = naive_xorshift((uint32_t) seed, (uint32_t) row, (uint32_t) col) % resolution;
-    double rand = (rand_32) / ((double) resolution);
-    return (1.0 - 0.0) * rand;
+  switch (seed) {
+    case 0:
+    case 1:
+      return seed;
+    case 2:
+      return (row==col)? 1:0;
+    case 3:
+      return row * 10 + col;
+    default:
+      if (seed > 10) {
+        uint32_t resolution = 1000;
+        uint32_t rand_32 = naive_xorshift((uint32_t) seed, (uint32_t) row, 
+                  (uint32_t) col) % resolution;
+        double rand = (rand_32) / ((double) resolution);
+        return (1.0 - 0.0) * rand;
+      }
   }
   return -1;
 }

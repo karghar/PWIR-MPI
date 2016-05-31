@@ -1,15 +1,16 @@
-CC      = mpicc
-CFLAGS  = -Wall -c --std=c99 -O3
-LDFLAGS = -Wall -O3 --std=c99
+CC      = mpicxx
+CFLAGS  = -Wall -c --std=c++11 -O3 -Wno-unused-result -o
+CXXFLAGS = $(CFLAGS)
+LDFLAGS = -Wall -O3 --std=c++11
 ALL     = matrixmul
-MATGENFILE = densematgen.o
+O_FILES = densematgen.o sparsematrix.o
 
 all: $(ALL)
 
-$(ALL): %: %.o $(MATGENFILE)
+$(ALL): %: %.o $(O_FILES)
 	$(CC) $(LDFLAGS) $^ -o $@
 
-%.o: %.c matgen.h Makefile
+%.o: %.cpp Makefile
 	$(CC) $(CFLAGS) $@ $<
 
 clean:

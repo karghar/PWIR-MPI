@@ -4,9 +4,10 @@
 #include <assert.h>
 #include <getopt.h>
 
-#include "densematgen.h"
+#include "densematgen.hpp"
+#include "sparsematrix.hpp"
 
-typedef void* sparse_type;
+typedef SparseMatrix* sparse_type;
 
 int main(int argc, char * argv[])
 {
@@ -39,8 +40,9 @@ int main(int argc, char * argv[])
       break;
     case 'f': if ((mpi_rank) == 0) 
       { 
+        SparseMatrix sparseM =  SparseMatrix();
         // FIXME: Process 0 should read the CSR sparse matrix here
-        sparse = NULL;
+        sparse = sparseM.createFromFile(optarg);
       }
       break;
     case 'c': repl_fact = atoi(optarg);

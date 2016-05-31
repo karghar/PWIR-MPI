@@ -7,13 +7,9 @@
  * Copyright (C) Krzysztof Rzadca, 2016
  */
 
-#ifndef __MIMUW_MATGEN_H__
-#define __MIMUW_MATGEN_H__
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+#ifndef DENSEMATGEN_HPP
+#define DENSEMATGEN_HPP
 
 
 /**
@@ -27,10 +23,4 @@ extern "C"
 double generate_double(int seed, int row, int col);
 
 
-
-#ifdef __cplusplus
-}
-#endif
-
-
-#endif /* __MIMUW_MATGEN_H__ */
+#endif /* DENSEMATGEN_HPP */
