@@ -11,6 +11,12 @@
 #define COL 1
 #define VALUE 2
 
+//STATICS
+uint SparseMatrix::maxInRow;
+uint SparseMatrix::maxRows;
+uint SparseMatrix::maxColumns;
+
+//METHODS
 
 SparseMatrix* SparseMatrix::createFromFile(const char* filepath)
 {
@@ -24,6 +30,10 @@ SparseMatrix* SparseMatrix::createFromFile(const char* filepath)
 	uint rows, cols, elems, maxElems;
 
 	fscanf(f, "%u%u%u%u", &rows, &cols, &elems, &maxElems);
+
+	SparseMatrix::maxInRow = maxElems;
+	SparseMatrix::maxRows = rows;
+	SparseMatrix::maxColumns = cols;
 
 	std::vector<double> a(elems);
 	std::vector<uint>  ia(rows + 1);

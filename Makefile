@@ -1,6 +1,6 @@
 CC      = mpicxx
-CFLAGS  = -Wall -c --std=c++11 -O3 -Wno-unused-result -o
-CXXFLAGS = $(CFLAGS)
+CFLAGS  = -Wall -c --std=c++11 -O3  -Wno-unused-result -o
+CXXFLAGS = $(CFLAGS)  -stdlib=libc++
 LDFLAGS = -Wall -O3 --std=c++11
 ALL     = matrixmul
 O_FILES = densematgen.o sparsematrix.o

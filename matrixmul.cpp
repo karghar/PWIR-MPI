@@ -41,7 +41,7 @@ int main(int argc, char * argv[])
     case 'f': if ((mpi_rank) == 0) 
       { 
         SparseMatrix sparseM =  SparseMatrix();
-        // FIXME: Process 0 should read the CSR sparse matrix here
+        
         sparse = sparseM.createFromFile(optarg);
       }
       break;
